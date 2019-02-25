@@ -5,16 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">All Question</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                   @foreach ($questions as $question)
+                        <div class="media">
+                            <div class="media-body">
+                                <h3 class="mt-0">{{ $question->title }}</h3>
+                                {{str_limit($question->body, 250) }}
+                            </div>
                         </div>
-                    @endif
-
-                    You are logged in!
+                        <hr>
+                   @endforeach
+                    <div class="mx-auto">
+                   {{ $questions->links() }}
+                   </div>
                 </div>
             </div>
         </div>
